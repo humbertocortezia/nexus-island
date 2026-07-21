@@ -1,7 +1,7 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default-capability",
-  "description": "Capacidades base para CortezIA Island v0.2",
+  "description": "Capacidades base para Nexus Island v0.2",
   "windows": ["island-panel"],
   "permissions": [
     "core:window:default",

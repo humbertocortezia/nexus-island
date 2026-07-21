@@ -65,7 +65,7 @@ const Panel: React.FC<PanelProps> = ({
               className="text-xs font-semibold uppercase tracking-wider"
               style={{ color: "var(--panel-text)", opacity: 0.8 }}
             >
-              CortezIA
+              Nexus
             </span>
           </div>
           <div className="flex items-center gap-1">

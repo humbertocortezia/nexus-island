@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * CortezIA Island v0.2 — AI Agent Hook (Multi-session)
+ * Nexus Island v0.2 — AI Agent Hook (Multi-session)
  * ======================================================
  *
- * Envia eventos de agentes de IA para o CortezIA Island via WebSocket.
+ * Envia eventos de agentes de IA para o Nexus Island via WebSocket.
  * Agora suporta múltiplas sessões paralelas com sistema de aprovação.
  *
  * Uso:
@@ -13,8 +13,8 @@
  */
 
 const WS_URL = "ws://127.0.0.1:19876";
-const AGENT = process.env.CORTEZIA_AGENT || "opencode";
-const PROJECT = process.env.CORTEZIA_PROJECT || "";
+const AGENT = process.env.NEXUS_AGENT || "opencode";
+const PROJECT = process.env.NEXUS_PROJECT || "";
 
 let ws = null;
 let reconnectTimer = null;
@@ -25,21 +25,21 @@ function connect() {
   ws = new WebSocket(WS_URL);
 
   ws.onopen = () => {
-    console.error(`[cortezia] Conectado em ${WS_URL}`);
+    console.error(`[nexus] Conectado em ${WS_URL}`);
     while (messageQueue.length > 0) {
       ws.send(JSON.stringify(messageQueue.shift()));
     }
   };
 
   ws.onclose = () => {
-    console.error("[cortezia] Desconectado. Reconectando em 3s...");
+    console.error("[nexus] Desconectado. Reconectando em 3s...");
     ws = null;
     clearTimeout(reconnectTimer);
     reconnectTimer = setTimeout(connect, 3000);
   };
 
   ws.onerror = (err) => {
-    console.error(`[cortezia] Erro: ${err.message}`);
+    console.error(`[nexus] Erro: ${err.message}`);
   };
 }
 
@@ -63,7 +63,7 @@ function generateId(prefix = "session") {
 
 // ─── API ──────────────────────────────────────────────────────────────────────
 
-const cortezia = {
+const nexus = {
   connect,
 
   /** Inicia uma nova sessão de agente */
@@ -130,16 +130,16 @@ if (isMain) {
   connect();
 
   const sid = generateId("demo");
-  console.error(`[cortezia] Demo iniciada. Session: ${sid}`);
-  console.error("[cortezia] Pressione Ctrl+C para sair.");
+  console.error(`[nexus] Demo iniciada. Session: ${sid}`);
+  console.error("[nexus] Pressione Ctrl+C para sair.");
 
-  setTimeout(() => cortezia.sessionStart(sid, "Analisando estrutura do projeto", "cortezia-island"), 500);
-  setTimeout(() => cortezia.sessionUpdate(sid, "running", "Lendo diretórios..."), 1500);
-  setTimeout(() => cortezia.message(sid, "## Análise Inicial\n\nO projeto usa **Tauri 2 + React 19** com as seguintes características:\n\n1. **Backend Rust** com WebSocket server\n2. **Frontend React** com Framer Motion\n3. Sistema de aprovação human-in-the-loop\n\n```rust\npub struct AppState {\n    pub island: Mutex<IslandState>,\n    pub event_tx: broadcast::Sender<AgentEvent>,\n}\n```"), 2500);
-  setTimeout(() => cortezia.toolCall(sid, "Write", "src/main.rs\n+ fn new_feature() {\n+   println!(\"implemented\");\n+ }", "Adicionar nova feature ao módulo principal"), 4000);
-  setTimeout(() => cortezia.sessionUpdate(sid, "waiting_approval", "Aguardando aprovação para escrever arquivo..."), 4500);
+  setTimeout(() => nexus.sessionStart(sid, "Analisando estrutura do projeto", "nexus-island"), 500);
+  setTimeout(() => nexus.sessionUpdate(sid, "running", "Lendo diretórios..."), 1500);
+  setTimeout(() => nexus.message(sid, "## Análise Inicial\n\nO projeto usa **Tauri 2 + React 19** com as seguintes características:\n\n1. **Backend Rust** com WebSocket server\n2. **Frontend React** com Framer Motion\n3. Sistema de aprovação human-in-the-loop\n\n```rust\npub struct AppState {\n    pub island: Mutex<IslandState>,\n    pub event_tx: broadcast::Sender<AgentEvent>,\n}\n```"), 2500);
+  setTimeout(() => nexus.toolCall(sid, "Write", "src/main.rs\n+ fn new_feature() {\n+   println!(\"implemented\");\n+ }", "Adicionar nova feature ao módulo principal"), 4000);
+  setTimeout(() => nexus.sessionUpdate(sid, "waiting_approval", "Aguardando aprovação para escrever arquivo..."), 4500);
 
   process.stdin.resume();
 }
 
-export default cortezia;
+export default nexus;

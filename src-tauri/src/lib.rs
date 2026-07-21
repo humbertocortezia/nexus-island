@@ -278,7 +278,7 @@ pub fn run() {
             // System tray
             let tray_menu = build_tray_menu(app.handle())?;
             let _ = app
-                .tray_by_id("cortezia-tray")
+                .tray_by_id("nexus-tray")
                 .map(|tray| {
                     let _ = tray.set_menu(Some(tray_menu));
                     tray
@@ -313,7 +313,7 @@ pub fn run() {
                 }
             });
 
-            info!("CortezIA Island v0.2.0 iniciado");
+            info!("Nexus Island v0.2.0 iniciado");
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
@@ -327,5 +327,5 @@ pub fn run() {
             toggle_window,
         ])
         .run(tauri::generate_context!())
-        .expect("erro ao executar CortezIA Island");
+        .expect("erro ao executar Nexus Island");
 }

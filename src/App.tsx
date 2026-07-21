@@ -6,7 +6,7 @@ import { Session, Theme, AgentEvent } from "./lib/types";
 function App() {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [theme, setTheme] = useState<Theme>(() =>
-    (localStorage.getItem("cortezia-theme") as Theme) || "dark",
+    (localStorage.getItem("nexus-theme") as Theme) || "dark",
   );
   const connectedRef = useRef(false);
 
@@ -32,7 +32,7 @@ function App() {
   // Tema
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("cortezia-theme", theme);
+    localStorage.setItem("nexus-theme", theme);
     import("@tauri-apps/api/core")
       .then(({ invoke }) => invoke("set_theme", { theme }))
       .catch(() => {});

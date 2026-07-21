@@ -47,7 +47,7 @@ async fn handle_connection(
 
     let welcome = serde_json::json!({
         "status": "connected",
-        "server": "CortezIA Island",
+        "server": "Nexus Island",
         "version": "0.2.0"
     });
     let _ = write.send(Message::Text(welcome.to_string().into())).await;

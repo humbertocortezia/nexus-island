@@ -1,5 +1,5 @@
 [package]
-name = "cortezia-island"
+name = "nexus-island"
 version = "0.1.0"
 description = "Dynamic Island overlay for AI agent integration"
 authors = ["Humberto"]
@@ -7,7 +7,7 @@ edition = "2021"
 rust-version = "1.80"
 
 [lib]
-name = "cortezia_island_lib"
+name = "nexus_island_lib"
 crate-type = ["lib", "cdylib", "staticlib"]
 
 [build-dependencies]

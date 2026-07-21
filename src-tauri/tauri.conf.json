@@ -1,8 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/crates/tauri-cli/schema.json",
-  "productName": "CortezIA Island",
+  "productName": "Nexus Island",
   "version": "0.2.0",
-  "identifier": "com.cortezia.island",
+  "identifier": "com.nexus.island",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:1420",
@@ -13,7 +13,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "CortezIA Island",
+        "title": "Nexus Island",
         "label": "island-panel",
         "width": 440,
         "height": 580,
@@ -36,11 +36,11 @@
       }
     ],
     "trayIcon": {
-      "id": "cortezia-tray",
+      "id": "nexus-tray",
       "iconPath": "icons/icon.png",
-      "tooltip": "CortezIA Island",
+      "tooltip": "Nexus Island",
       "menuOnLeftClick": false,
-      "title": "CortezIA",
+      "title": "Nexus",
       "showMenuOnLeftClick": true
     },
     "security": {
